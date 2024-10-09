@@ -26,6 +26,12 @@ public class PlayerDetail : MonoBehaviour {
         playerStats.Stress = Stress;
         playerStats.Reputation = Reputation;
         playerStats.Position = transform.position;
+        playerStats.WebSecurity = WebSecurity;
+        playerStats.Programming = Programming;
+        playerStats.Forensics = Forensics;
+        playerStats.SocialEngineering = SocialEngineering;
+        playerStats.Cryptography = Cryptography;
+        playerStats.ReverseEngineering = ReverseEngineering;
     }
 
     // Fungsi untuk memuat data player
