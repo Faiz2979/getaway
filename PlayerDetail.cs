@@ -7,6 +7,7 @@ public class PlayerDetail : MonoBehaviour {
     public int Money;
     public Vector3 Position;
 
+
     // Fungsi untuk menyimpan data player
     public void SavePlayer() {
         PlayerInfoUpdate(); // Perbarui playerStats sebelum menyimpan
@@ -31,6 +32,12 @@ public class PlayerDetail : MonoBehaviour {
             Money = data.Money;
             Position = new Vector3(data.position[0], data.position[1], data.position[2]);
             transform.position = Position; // Set posisi object
+            playerStats.WebSecurity.SetData(data.WebSecurity);
+            playerStats.Programming.SetData(data.Programming);
+            playerStats.Forensics.SetData(data.Forensics);
+            playerStats.SocialEngineering.SetData(data.SocialEngineering);
+            playerStats.Cryptography.SetData(data.Cryptography);
+            playerStats.ReverseEngineering.SetData(data.ReverseEngineering);
 
             Debug.Log("Game has been loaded.");
             PlayerInfo(); // Tampilkan informasi player setelah load

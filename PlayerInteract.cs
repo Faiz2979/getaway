@@ -74,4 +74,5 @@ public class PlayerInteract : MonoBehaviour
         // Hanya bisa berubah scene jika ada interaksi dan ada tujuan scene yang diatur pada door
         return py.interact && door != null && door.sceneDestination != null;
     }
+    
 }
