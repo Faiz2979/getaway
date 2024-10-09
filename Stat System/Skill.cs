@@ -5,8 +5,8 @@ public class Skill {
     public string skillName;
     public int level;
     public int experience;
-    public int experienceToNextLevel;
-    public int expToNextLevelMultiplier;
+    public int experienceToNextLevel=100;
+    public int expToNextLevelMultiplier=2;
 
     // Constructor for initializing a skill
     public Skill(string name, int initialLevel = 0, int initialExp = 0, int expToNext = 100, int multiplier = 2) {

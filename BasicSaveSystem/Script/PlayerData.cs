@@ -17,6 +17,14 @@ public class PlayerData {
         position[0] = playerStats.Position.x;
         position[1] = playerStats.Position.y;
         position[2] = playerStats.Position.z;
+
+        // Skill Data
+        WebSecurity = new SkillData(playerStats.WebSecurity);
+        Programming = new SkillData(playerStats.Programming);
+        Forensics = new SkillData(playerStats.Forensics);
+        SocialEngineering = new SkillData(playerStats.SocialEngineering);
+        Cryptography = new SkillData(playerStats.Cryptography);
+        ReverseEngineering = new SkillData(playerStats.ReverseEngineering);
     }
 }
 [System.Serializable]

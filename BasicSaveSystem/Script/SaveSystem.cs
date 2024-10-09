@@ -1,31 +1,35 @@
 using System.IO;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
 
-public static class SaveSystem {
-    public static void SavePlayer(PlayerStats playerStats) {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.Save";
-        FileStream stream = new FileStream(path, FileMode.Create);
+public class SaveSystem
+{
+    // Menyimpan data pemain dan waktu ke dalam file JSON
+    public static void SavePlayer(PlayerStats playerStats)
+    {
+        PlayerData playerData = new PlayerData(playerStats);
 
-        PlayerData data = new PlayerData(playerStats);
+        // Konversi ke JSON
+        string playerJson = JsonUtility.ToJson(playerData);
 
-        formatter.Serialize(stream, data);
-        stream.Close();
+        // Menyimpan data ke file
+        File.WriteAllText(Application.persistentDataPath + "/playerData.json", playerJson);
     }
 
-    public static PlayerData LoadPlayer() {
-        string path = Application.persistentDataPath + "/player.Save";
-        if (File.Exists(path)) {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            stream.Close();
-            return data;
-        } else {
-            Debug.LogError("Save file not found in " + path);
+    // Memuat data pemain dari file JSON
+    public static PlayerData LoadPlayer()
+    {
+        string path = Application.persistentDataPath + "/playerData.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            PlayerData playerData = JsonUtility.FromJson<PlayerData>(json);
+            return playerData;
+        }
+        else
+        {
+            Debug.LogError("File penyimpanan tidak ditemukan di " + path);
             return null;
         }
     }
+    // Memuat data waktu dari file JSON
 }

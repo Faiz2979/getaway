@@ -6,7 +6,12 @@ public class PlayerDetail : MonoBehaviour {
     public int Reputation;
     public int Money;
     public Vector3 Position;
-
+    public Skill WebSecurity;
+    public Skill Programming;
+    public Skill Forensics;
+    public Skill SocialEngineering;
+    public Skill Cryptography;
+    public Skill ReverseEngineering;
 
     // Fungsi untuk menyimpan data player
     public void SavePlayer() {
