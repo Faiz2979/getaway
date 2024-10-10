@@ -27,9 +27,9 @@ public class Skill {
 
     // Method for leveling up
     private void LevelUp() {
-        experience -= experienceToNextLevel; // Subtract the required experience
+        experience = 0; // Subtract the required experience
         level++;
-        experienceToNextLevel *= expToNextLevelMultiplier+(experienceToNextLevel/10); // Double the requirement for next level
+        experienceToNextLevel *= expToNextLevelMultiplier+(experienceToNextLevel/10); // Increase the requirement for next level
         Debug.Log(skillName + " leveled up to level " + level + "!");
     }
     public void SetData(SkillData data) {

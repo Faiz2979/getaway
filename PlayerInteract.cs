@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private PlayerController py;  // Referensi ke PlayerController
-    private Door door;  // Referensi ke Door
+    private PlayerController py;  // Referensiz ke PlayerController
+    private GameObject door;  // Referensi ke Door
+    private ExpDummy exp;  // Referensi ke ExpDummy
+    bool expAlreadyTaken = false;
 
     void Start()
     {
@@ -20,6 +22,13 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("Player is on the computer");
             SceneManager.LoadScene("onComputer");  // Memuat scene untuk komputer
         }
+        if (py.interact && exp != null && !expAlreadyTaken)
+        {
+            Debug.Log("Player take the exp");
+            exp.addExp();
+            Debug.Log("Player has take the exp");
+            expAlreadyTaken = true;
+        }
     }
 
     // Metode untuk interaksi pemain
@@ -29,28 +38,30 @@ public class PlayerInteract : MonoBehaviour
         {
             Debug.Log("Player Can Interact");
         }
-
-        // Cek apakah interaksi dengan pintu bisa memicu perubahan scene
-        if (ChangeSceneDoorInteract())
+        if (door != null && py.canInteract && py.interact)
         {
-            door.ChangeScene();  // Memanggil metode pada Door untuk berpindah scene
+
         }
     }
 
-    // Mengambil komponen Door dari objek pintu yang berinteraksi dengan player
     void OnTriggerEnter2D(Collider2D other)
     {
         py.canInteract = true;
-
+        // Mengambil komponen Door dari objek pintu yang berinteraksi dengan player
         if (other.CompareTag("Door"))
         {
-            door = other.GetComponent<Door>();  // Mengambil komponen Door dari objek pintu
+            door = other.gameObject;  // Mengambil komponen Door dari objek pintu
         }
         if (other.CompareTag("Desk"))
         {
             py.onDesk = true;
             Debug.Log("Player in the desk");
         }
+        if(other.CompareTag("ExpDummy"))
+        {
+            exp = other.GetComponent<ExpDummy>();
+        }
+
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -66,13 +77,6 @@ public class PlayerInteract : MonoBehaviour
             py.onDesk = false;
             Debug.Log("Player not in the desk");
         }
-    }
-
-    // Cek apakah player bisa mengubah scene melalui interaksi dengan pintu
-    bool ChangeSceneDoorInteract()
-    {
-        // Hanya bisa berubah scene jika ada interaksi dan ada tujuan scene yang diatur pada door
-        return py.interact && door != null && door.sceneDestination != null;
     }
     
 }
