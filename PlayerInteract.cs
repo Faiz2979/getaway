@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerInteract : MonoBehaviour
 {
     private PlayerController py;  // Referensiz ke PlayerController
-    private GameObject door;  // Referensi ke Door
+    private GameObject door;  // Object Door
     private ExpDummy exp;  // Referensi ke ExpDummy
     bool expAlreadyTaken = false;
 
@@ -40,7 +40,7 @@ public class PlayerInteract : MonoBehaviour
         }
         if (door != null && py.canInteract && py.interact)
         {
-
+            transform.position = door.GetComponent<Door>().GetDestination().position;  // Memindahkan player ke posisi pintu tujuan
         }
     }
 

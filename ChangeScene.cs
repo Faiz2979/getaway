@@ -6,9 +6,16 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     public string sceneToChangeTo;
+    public float delay;
         public void Mulai(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        StartCoroutine(ChangeSceneCoroutine());
         }
+
+    IEnumerator ChangeSceneCoroutine()
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneToChangeTo);
+    }
 
     // Update is called once per frame
         public void Keluar(){
