@@ -5,6 +5,7 @@ public class PlayerInteract : MonoBehaviour
 {
     private PlayerController py;  // Referensiz ke PlayerController
     private GameObject door;  // Object Door
+    public GameObject Pycamera; //referensi ke camera
     private ExpDummy exp;  // Referensi ke ExpDummy
     bool expAlreadyTaken = false;
 
@@ -40,7 +41,13 @@ public class PlayerInteract : MonoBehaviour
         }
         if (door != null && py.canInteract && py.interact)
         {
+            door.GetComponent<Door>().anim.SetBool("ChangeLoc", true);  // Memanggil animasi pintu
+            // if(true){s
+
             transform.position = door.GetComponent<Door>().GetDestination().position;  // Memindahkan player ke posisi pintu tujuan
+            Pycamera.transform.position = new Vector3(door.GetComponent<Door>().GetCameraPosition().position.x, Pycamera.transform.position.y, Pycamera.transform.position.z); //memindahpak kamera ke posisi pintu tujuan
+            // }
+            
         }
     }
 
@@ -78,5 +85,7 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("Player not in the desk");
         }
     }
-    
+    public Transform changeCameraPos(){
+        return door.GetComponent<Door>().GetCameraPosition();
+    }
 }

@@ -6,7 +6,16 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public Transform destination;
-    public Transform GetDestination(){
+    public Transform cameraPosition;
+    public Animator anim;
+    public Transform GetDestination()
+    {
+        
         return destination;
+    }
+
+    public Transform GetCameraPosition()
+    {
+        return cameraPosition;
     }
 }
