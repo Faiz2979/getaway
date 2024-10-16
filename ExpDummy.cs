@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ExpDummy : MonoBehaviour
 {
-    public Skill skill;
-    public PlayerStats playerStats;
-    public int experience=30;
+public string skillName;  // Nama skill
+    public PlayerStats playerStats;  // Referensi ke PlayerStats
+    public int experience = 30;  // Jumlah XP yang akan ditambahkan
 
+    // Metode untuk menambahkan XP
     public void addExp()
     {
-        playerStats.AddSkillExperience(skill, experience);
+        // Tambahkan XP ke skill berdasarkan nama
+        playerStats.AddSkillExperience(skillName, experience);
     }
 }

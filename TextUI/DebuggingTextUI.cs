@@ -17,6 +17,6 @@ public class DebuggingTextUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        debuggingText.text = "Web Security Level: " + playerStats.WebSecurity.level;
+        debuggingText.text = "Web Security Level: " + playerStats.skills["Web Security"].level;
     }
 }

@@ -6,6 +6,7 @@ public class PlayerDetail : MonoBehaviour {
     public int Reputation;
     public int Money;
     public Vector3 Position;
+    public Vector3 CamPos;
     public Skill WebSecurity;
     public Skill Programming;
     public Skill Forensics;
@@ -26,29 +27,33 @@ public class PlayerDetail : MonoBehaviour {
         playerStats.Stress = Stress;
         playerStats.Reputation = Reputation;
         playerStats.Position = transform.position;
-        playerStats.WebSecurity = WebSecurity;
-        playerStats.Programming = Programming;
-        playerStats.Forensics = Forensics;
-        playerStats.SocialEngineering = SocialEngineering;
-        playerStats.Cryptography = Cryptography;
-        playerStats.ReverseEngineering = ReverseEngineering;
+        playerStats.CamPos = Camera.main.transform.position;
+        playerStats.skills["Web Security"] = WebSecurity;
+        playerStats.skills["Programming"] = Programming;
+        playerStats.skills["Forensics"] = Forensics;
+        playerStats.skills["Social Engineering"] = SocialEngineering;
+        playerStats.skills["Cryptography"] = Cryptography;
+        playerStats.skills["Reverse Engineering"] = ReverseEngineering;
     }
 
     // Fungsi untuk memuat data player
     public void LoadPlayer() {
         PlayerData data = SaveSystem.LoadPlayer(); // Memuat data dari SaveSystem
         if (data != null) {
-            Stress = (int)data.Stress; // Mengisi data dari file yang disimpan
-            Reputation = (int)data.Reputation;
+            Stress = data.Stress; // Mengisi data dari file yang disimpan
+            Reputation = data.Reputation;
             Money = data.Money;
             Position = new Vector3(data.position[0], data.position[1], data.position[2]);
+            CamPos = new Vector3(data.camPos[0], data.camPos[1], data.camPos[2]);
             transform.position = Position; // Set posisi object
-            playerStats.WebSecurity.SetData(data.WebSecurity);
-            playerStats.Programming.SetData(data.Programming);
-            playerStats.Forensics.SetData(data.Forensics);
-            playerStats.SocialEngineering.SetData(data.SocialEngineering);
-            playerStats.Cryptography.SetData(data.Cryptography);
-            playerStats.ReverseEngineering.SetData(data.ReverseEngineering);
+            Camera.main.transform.position = CamPos;
+            playerStats.skills["Web Security"].SetData(data.WebSecurity);
+            playerStats.skills["Programming"].SetData(data.Programming);
+            playerStats.skills["Forensics"].SetData(data.Forensics);
+            playerStats.skills["Social Engineering"].SetData(data.SocialEngineering);
+            playerStats.skills["Cryptography"].SetData(data.Cryptography);
+            playerStats.skills["Reverse Engineering"].SetData(data.ReverseEngineering);
+
 
             Debug.Log("Game has been loaded.");
             PlayerInfo(); // Tampilkan informasi player setelah load

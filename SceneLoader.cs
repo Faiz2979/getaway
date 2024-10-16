@@ -7,11 +7,6 @@ public class SceneLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void LoadNextScene(){
         
         StartCoroutine(ALoadScene(SceneManager.GetActiveScene().buildIndex + 1));
