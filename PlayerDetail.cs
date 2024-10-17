@@ -28,12 +28,12 @@ public class PlayerDetail : MonoBehaviour {
         playerStats.Reputation = Reputation;
         playerStats.Position = transform.position;
         playerStats.CamPos = Camera.main.transform.position;
-        playerStats.skills["Web Security"] = WebSecurity;
-        playerStats.skills["Programming"] = Programming;
-        playerStats.skills["Forensics"] = Forensics;
-        playerStats.skills["Social Engineering"] = SocialEngineering;
-        playerStats.skills["Cryptography"] = Cryptography;
-        playerStats.skills["Reverse Engineering"] = ReverseEngineering;
+        playerStats.WebSecurity = WebSecurity;
+        playerStats.Programming = Programming;
+        playerStats.Forensics = Forensics;
+        playerStats.SocialEngineering = SocialEngineering;
+        playerStats.Cryptography = Cryptography;
+        playerStats.ReverseEngineering = ReverseEngineering;
     }
 
     // Fungsi untuk memuat data player
@@ -47,12 +47,12 @@ public class PlayerDetail : MonoBehaviour {
             CamPos = new Vector3(data.camPos[0], data.camPos[1], data.camPos[2]);
             transform.position = Position; // Set posisi object
             Camera.main.transform.position = CamPos;
-            playerStats.skills["Web Security"].SetData(data.WebSecurity);
-            playerStats.skills["Programming"].SetData(data.Programming);
-            playerStats.skills["Forensics"].SetData(data.Forensics);
-            playerStats.skills["Social Engineering"].SetData(data.SocialEngineering);
-            playerStats.skills["Cryptography"].SetData(data.Cryptography);
-            playerStats.skills["Reverse Engineering"].SetData(data.ReverseEngineering);
+            playerStats.WebSecurity.SetData(data.WebSecurity);
+            playerStats.Programming.SetData(data.Programming);
+            playerStats.Forensics.SetData(data.Forensics);
+            playerStats.SocialEngineering.SetData(data.SocialEngineering);
+            playerStats.Cryptography.SetData(data.Cryptography);
+            playerStats.ReverseEngineering.SetData(data.ReverseEngineering);
 
 
             Debug.Log("Game has been loaded.");

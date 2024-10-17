@@ -23,12 +23,12 @@ public class PlayerData {
         camPos[2] = playerStats.CamPos.z;
 
         // Skill Data
-        WebSecurity = new SkillData(playerStats.skills["Web Security"]);
-        Programming = new SkillData(playerStats.skills["Programming"]);
-        Forensics = new SkillData(playerStats.skills["Forensics"]);
-        SocialEngineering = new SkillData(playerStats.skills["Social Engineering"]);
-        Cryptography = new SkillData(playerStats.skills["Cryptography"]);
-        ReverseEngineering = new SkillData(playerStats.skills["Reverse Engineering"]);
+        WebSecurity = new SkillData(playerStats.WebSecurity);
+        Programming = new SkillData(playerStats.Programming);
+        Forensics = new SkillData(playerStats.Forensics);
+        SocialEngineering = new SkillData(playerStats.SocialEngineering);
+        Cryptography = new SkillData(playerStats.Cryptography);
+        ReverseEngineering = new SkillData(playerStats.ReverseEngineering);
     }
 }
 [System.Serializable]

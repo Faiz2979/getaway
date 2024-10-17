@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class PlayerInteract : MonoBehaviour
     private GameObject door;  // Object Door
     public Transform Pycamera; //referensi ke camera
     private ExpDummy exp;  // Referensi ke ExpDummy
-    bool expAlreadyTaken = false;
 
     void Start()
     {
@@ -23,12 +23,9 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("Player is on the computer");
             SceneManager.LoadScene("onComputer");  // Memuat scene untuk komputer
         }
-        if (py.interact && exp != null && !expAlreadyTaken)
+        if (py.interact && exp != null && !exp.expAlreadyTaken)
         {
-            Debug.Log("Player take the exp");
-            exp.addExp();
-            Debug.Log("Player has take the exp");
-            expAlreadyTaken = true;
+        StartCoroutine(TakeExp());
         }
     }
 
@@ -44,8 +41,8 @@ public class PlayerInteract : MonoBehaviour
             
             StartCoroutine(door.GetComponent<Door>().ChangeLocationCoroutine(this.gameObject, Pycamera));  // Memulai Coroutine ChangeLocationCoroutine dari Door
         }
-        if(py.canInteract && py.interact && exp != null && !expAlreadyTaken){
-            exp.addExp();
+        if(py.canInteract && py.interact && exp != null && !exp.expAlreadyTaken){
+            // exp.addExp();
         }
     }
 
@@ -89,5 +86,11 @@ public class PlayerInteract : MonoBehaviour
     }
     public Transform changeCameraPos(){
         return door.GetComponent<Door>().GetCameraPosition();
+    }
+    IEnumerator TakeExp(){
+    Debug.Log("Player take the exp");
+    exp.addExp();
+    Debug.Log("Player has taken the exp");
+    yield return 5;  // Wait until next frame or add delay if necessary
     }
 }
