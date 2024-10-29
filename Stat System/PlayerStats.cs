@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStats", menuName = "PlayerStats/Player", order = 0)]
@@ -10,7 +11,6 @@ public class PlayerStats : ScriptableObject {
     public Vector3 CamPos;
 
     public Skill WebSecurity = new Skill("Web Security");
-    public Skill Programming = new Skill("Programming");
     public Skill Forensics = new Skill("Forensics");
     public Skill SocialEngineering = new Skill("Social Engineering");
     public Skill Cryptography = new Skill("Cryptography");
@@ -20,4 +20,6 @@ public class PlayerStats : ScriptableObject {
     public void AddWebSecurityXp(int amount) {
         WebSecurity.AddExperience(amount);
     }
+
+
 }

@@ -24,7 +24,6 @@ public class PlayerData {
 
         // Skill Data
         WebSecurity = new SkillData(playerStats.WebSecurity);
-        Programming = new SkillData(playerStats.Programming);
         Forensics = new SkillData(playerStats.Forensics);
         SocialEngineering = new SkillData(playerStats.SocialEngineering);
         Cryptography = new SkillData(playerStats.Cryptography);
@@ -33,12 +32,14 @@ public class PlayerData {
 }
 [System.Serializable]
 public class SkillData {
+    public string skillName;
     public int level;
     public int experience;
     public int experienceToNextLevel;
 
     // Constructor to initialize SkillData from Skill
     public SkillData(Skill skill) {
+        skillName = skill.skillName;
         level = skill.level;
         experience = skill.experience;
         experienceToNextLevel = skill.experienceToNextLevel;

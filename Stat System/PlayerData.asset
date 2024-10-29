@@ -14,41 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Money: 0
   Reputation: 0
-  Stress: 88
-  Position: {x: 6.771404, y: -2.1690872, z: 0}
+  Stress: 0
+  Position: {x: 5.0581937, y: -0.28904814, z: 0}
+  CamPos: {x: 5, y: 1, z: -15}
   WebSecurity:
     skillName: Web Security
     level: 0
-    experience: 100
-    experienceToNextLevel: 100
-    expToNextLevelMultiplier: 2
-  Programming:
-    skillName: Programming
-    level: 0
     experience: 0
     experienceToNextLevel: 100
-    expToNextLevelMultiplier: 2
+    expMultiplier: 0
   Forensics:
     skillName: Forensics
     level: 0
     experience: 0
     experienceToNextLevel: 100
-    expToNextLevelMultiplier: 2
+    expMultiplier: 0
   SocialEngineering:
     skillName: Social Engineering
     level: 0
     experience: 0
     experienceToNextLevel: 100
-    expToNextLevelMultiplier: 2
+    expMultiplier: 0
   Cryptography:
     skillName: Cryptography
     level: 0
     experience: 0
     experienceToNextLevel: 100
-    expToNextLevelMultiplier: 2
+    expMultiplier: 0
   ReverseEngineering:
-    skillName: Reverse Engineering
+    skillName: Reverese Engineering
     level: 0
     experience: 0
     experienceToNextLevel: 100
-    expToNextLevelMultiplier: 2
+    expMultiplier: 0

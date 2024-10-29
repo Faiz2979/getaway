@@ -6,6 +6,7 @@ public class PlayerInteract : MonoBehaviour
 {
     private PlayerController py;  // Referensiz ke PlayerController
     private GameObject door;  // Object Door
+    private GameObject Desk;  // Object Desk
     public Transform Pycamera; //referensi ke camera
     private ExpDummy exp;  // Referensi ke ExpDummy
 
@@ -53,10 +54,12 @@ public class PlayerInteract : MonoBehaviour
         if (other.CompareTag("Door"))
         {
             door = other.gameObject;  // Mengambil komponen Door dari objek pintu
+            door.GetComponent<OutlineHighlighter>().Highlight();  // Memanggil metode Highlight dari OutlineHighlighter
         }
         if (other.CompareTag("Desk"))
         {
-            py.onDesk = true;
+            Desk=other.gameObject;
+            Desk.GetComponent<OutlineHighlighter>().Highlight();
             Debug.Log("Player in the desk");
         }
         if(other.CompareTag("ExpDummy"))
@@ -72,12 +75,15 @@ public class PlayerInteract : MonoBehaviour
 
         if (other.CompareTag("Door"))
         {
+            door.GetComponent<OutlineHighlighter>().Unhighlight();  // Memanggil metode Highlight dari OutlineHighlighter
+            //wait before set door to null
+
             door = null;  // Mengosongkan referensi door ketika keluar dari area pintu
         }
         if (other.CompareTag("Desk"))
         {
-            py.onDesk = false;
-            Debug.Log("Player not in the desk");
+            Desk.GetComponent<OutlineHighlighter>().Unhighlight();
+            Desk=null;
         }
                 if(other.CompareTag("ExpDummy"))
         {

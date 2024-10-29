@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteract playerInteraction;  // Referensi ke PlayerInteract
     public Animator anim;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     [Header("Player Movement")]
     public float moveSpd = 5f;

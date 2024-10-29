@@ -8,6 +8,7 @@ public class DebuggingTextUI : MonoBehaviour
 {
     public TextMeshProUGUI debuggingText;
     public TextMeshProUGUI debuggingText2;
+    public TextMeshProUGUI debuggingText3;
     public PlayerStats playerStats;
     
     // Start is called before the first frame update
@@ -21,5 +22,6 @@ public class DebuggingTextUI : MonoBehaviour
     {
         debuggingText.text = "Web Security Level: " + playerStats.WebSecurity.level;
         debuggingText2.text = "Web Security Experience: " + playerStats.WebSecurity.experience;
+        debuggingText3.text = "Experience Requirement: " + playerStats.WebSecurity.experienceToNextLevel;
     }
 }
