@@ -12,11 +12,7 @@ public class OutlineHighlighter : MonoBehaviour
     private float targetThickness = 0f;
     private float currentThickness = 0f;
 
-    void Start()
-    {
-        // Inisialisasi material outline
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+
 
     void Update()
     {

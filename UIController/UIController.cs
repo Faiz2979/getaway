@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
     [SerializeField]AudioSource bgsound;
     
     [Header("UI")]
+    [SerializeField]GameObject reputation;
+    [SerializeField]PlayerStats reputationData;
     public GameObject mainUI;
     public GameObject menu;
     public GameObject profileMenu;
@@ -28,12 +30,27 @@ public class UIController : MonoBehaviour
         player.rb.velocity = Vector2.zero;
         player.xInput = 0;
         player.yInput = 0;
-        bgsound.mute = !bgsound.mute;
-        player.isMoving = !player.isMoving;
-        player.enabled = !player.enabled;
-        anim.enabled=!anim.enabled;
+        bgsound.mute = false;
+        player.isMoving = false;
+        player.enabled = false;
+        anim.enabled=false;
     }
-
+    public void ResumeGame(){
+        isPaused = false;
+        mainUI.SetActive(true);
+        menu.SetActive(false);
+        if (lastOpenedMenu != null)
+        {
+            lastOpenedMenu.SetActive(false);
+        }
+        else
+        {
+            profileMenu.SetActive(false);
+        }
+        player.enabled =true;
+        anim.enabled=true;
+        bgsound.mute =false;
+    }
     public void HandlePause()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -43,6 +60,7 @@ public class UIController : MonoBehaviour
             {
                 StopMovement();
                 mainUI.SetActive(false);
+                menu.SetActive(true);
                 if (lastOpenedMenu != null)
                 {
                     lastOpenedMenu.SetActive(true);
@@ -54,8 +72,9 @@ public class UIController : MonoBehaviour
             }
             else
             {
-                StopMovement();
+                ResumeGame();
                 mainUI.SetActive(true);
+                menu.SetActive(false);
                 if (lastOpenedMenu != null)
                 {
                     lastOpenedMenu.SetActive(false);
@@ -70,15 +89,19 @@ public class UIController : MonoBehaviour
     public void OpenSettingMenu()
     {
         isPaused = true;
-        settingMenu.SetActive(true);
-        profileMenu.SetActive(false);
+        StopMovement();
         mainUI.SetActive(false);
+        menu.SetActive(true);
+        profileMenu.SetActive(false);
         lastOpenedMenu = settingMenu;
+        settingMenu.SetActive(true);
     }
 
     public void OpenProfileMenu()
     {
         isPaused = true;
+        StopMovement();
+        menu.SetActive(true);
         profileMenu.SetActive(true);
         settingMenu.SetActive(false);
         mainUI.SetActive(false);

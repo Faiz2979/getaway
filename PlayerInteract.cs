@@ -33,14 +33,13 @@ public class PlayerInteract : MonoBehaviour
     // Metode untuk interaksi pemain
     public void Interact()
     {
-        if (py.canInteract)
-        {
-            Debug.Log("Player Can Interact");
-        }
         if (door != null && py.canInteract && py.interact)
         {
             
             StartCoroutine(door.GetComponent<Door>().ChangeLocationCoroutine(this.gameObject, Pycamera));  // Memulai Coroutine ChangeLocationCoroutine dari Door
+        }
+        if(Desk != null && py.canInteract && py.interact){
+            StartCoroutine(Desk.GetComponent<ChangeScene>().ChangeSceneCoroutine());
         }
         if(py.canInteract && py.interact && exp != null && !exp.expAlreadyTaken){
             // exp.addExp();
