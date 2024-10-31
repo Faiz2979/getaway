@@ -6,7 +6,7 @@ public class MonitorController : MonoBehaviour
 {
     [SerializeField]GameObject desktop;
     [SerializeField]GameObject browser;
-    [SerializeField]GameObject blacked;
+    [SerializeField]GameObject blacked; //a black background to covering the wallpaper
     [SerializeField]GameObject App1;
     [SerializeField]GameObject App2;
     [SerializeField]GameObject App3;
@@ -25,7 +25,14 @@ public class MonitorController : MonoBehaviour
 
     public void OpenBrowser(){
         desktop.SetActive(false);
+        blacked.SetActive(true); 
         browser.SetActive(true);
+    }
+
+    public void CloseBrowser(){
+        desktop.SetActive(true);
+        blacked.SetActive(false);
+        browser.SetActive(false);
     }
 
 }
