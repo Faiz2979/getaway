@@ -1,27 +1,43 @@
 using UnityEngine;
+using System.IO;
 
 public class RandomTextGenerator : MonoBehaviour
 {
-    // Daftar karakter yang akan diacak
-    private string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.";
-    public string randomString;
-    
+    public int word;
+    public string[] words;
 
-    // Fungsi untuk membuat susunan acak dari karakter
-    public string GenerateRandomText()
+    public void Start()
     {
-        string randomText = "";
-        for (int i = 0; i < 8; i++)
-        {
-            int randomIndex = Random.Range(0, characters.Length);
-            randomText += characters[randomIndex];
-        }
-        return randomText;
+    handleWord();
+    GetRandomText();
     }
 
-    public void GenerateText()
+    public string GetRandomText()
     {
-        randomString = GenerateRandomText();
-        Debug.Log("Random string: " + randomString);
+        word = Random.Range(0, words.Length);
+        Debug.Log(words.Length);
+        Debug.Log(word+" "+words[word]);
+        // Debug.Log("Random word index: " + word + " - " + words[word]);
+        if (word < 0 || word >= words.Length)
+        {
+            Debug.LogError("Index out of range");
+            return "";
+        }
+        return words[word];
+    }
+
+    public void handleWord()
+    {
+        string filePath = Path.Combine(Application.dataPath, "Script/Minigame/PasswordCracker/5lettersWords.txt");
+    words = File.ReadAllLines(filePath);
+
+    if (words == null || words.Length == 0)
+    {
+        Debug.LogError("Words array is empty or not loaded correctly.");
+    }
+    else
+    {
+        Debug.Log("Words loaded successfully. Total words: " + words.Length);
+    }
     }
 }

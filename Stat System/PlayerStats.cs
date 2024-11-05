@@ -20,6 +20,9 @@ public class PlayerStats : ScriptableObject {
     public void AddWebSecurityXp(int amount) {
         WebSecurity.AddExperience(amount);
     }
+    public void AddCryptographyXp(int amount) {
+        WebSecurity.AddExperience(amount);
+    }
 
 
 }

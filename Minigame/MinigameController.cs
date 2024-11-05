@@ -7,7 +7,7 @@ using TMPro;
 public class MinigameController : MonoBehaviour
 {
     [SerializeField] GameObject passwordCracker;
-    [SerializeField] TextMeshProUGUI PWanswer;
+    [SerializeField] GameObject cipherText;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +20,49 @@ public class MinigameController : MonoBehaviour
         
     }
 
-    public void PasswordCrackerMinigame()
+public void PasswordCrackerMinigame(){
+    if (passwordCracker == null)
     {
-        passwordCracker.SetActive(true);
-        RandomTextGenerator pw = GetComponent<RandomTextGenerator>();
-        pw.GenerateText();
-        PWanswer.text = pw.randomString;
-
+        Debug.LogError("Password Cracker GameObject is not assigned.");
+        return;
     }
+
+    passwordCracker.SetActive(true);
+
+    // Attempt to find components
+    RandomTextGenerator pw = passwordCracker.GetComponent<RandomTextGenerator>();
+    WordToChar wordToChar = passwordCracker.GetComponent<WordToChar>();
+
+    if (pw == null || wordToChar == null)
+    {
+        Debug.LogError("Components not found or not initialized properly.");
+        return;
+    }
+    pw.Start();
+    wordToChar.Start();
+}
+
+
+
+public void CipherTextMinigame(){
+    if (cipherText == null)
+    {
+        Debug.LogError("Password Cracker GameObject is not assigned.");
+        return;
+    }
+
+    cipherText.SetActive(true);
+
+    // Attempt to find components
+    RandomTextGenerator pw = passwordCracker.GetComponent<RandomTextGenerator>();
+    CaesarCipherGame cipherGame = cipherText.GetComponent<CaesarCipherGame>();
+
+    if (pw == null || cipherGame == null)
+    {
+        Debug.LogError("Components not found or not initialized properly.");
+        return;
+    }
+    pw.Start();
+    cipherGame.Start();
+}
 }

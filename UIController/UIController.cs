@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     
     [Header("UI")]
     [SerializeField]GameObject reputation;
+    [SerializeField]GameObject BackButton;
     [SerializeField]PlayerStats reputationData;
     public GameObject mainUI;
     public GameObject menu;
@@ -27,6 +28,7 @@ public class UIController : MonoBehaviour
 
 
     public void StopMovement(){
+        if(player !=null||anim !=null||mainUI !=null){
         player.rb.velocity = Vector2.zero;
         player.xInput = 0;
         player.yInput = 0;
@@ -34,8 +36,14 @@ public class UIController : MonoBehaviour
         player.isMoving = false;
         player.enabled = false;
         anim.enabled=false;
+        }else{
+            //without Player and Animation
+            BackButton.SetActive(false);
+            bgsound.mute = false;
+        }
     }
     public void ResumeGame(){
+        if(player !=null||anim !=null||mainUI !=null){
         isPaused = false;
         mainUI.SetActive(true);
         menu.SetActive(false);
@@ -50,6 +58,22 @@ public class UIController : MonoBehaviour
         player.enabled =true;
         anim.enabled=true;
         bgsound.mute =false;
+        }
+        else{
+            //without Player and Animation
+        isPaused = false;
+        BackButton.SetActive(true);
+        menu.SetActive(false);
+        if (lastOpenedMenu != null)
+        {
+            lastOpenedMenu.SetActive(false);
+        }
+        else
+        {
+            profileMenu.SetActive(false);
+        }
+            bgsound.mute = false;
+        }
     }
     public void HandlePause()
     {
@@ -59,7 +83,6 @@ public class UIController : MonoBehaviour
             if (isPaused)
             {
                 StopMovement();
-                mainUI.SetActive(false);
                 menu.SetActive(true);
                 if (lastOpenedMenu != null)
                 {
@@ -73,7 +96,6 @@ public class UIController : MonoBehaviour
             else
             {
                 ResumeGame();
-                mainUI.SetActive(true);
                 menu.SetActive(false);
                 if (lastOpenedMenu != null)
                 {
